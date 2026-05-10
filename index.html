@@ -1,0 +1,1709 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- CHANGE: Update title to your business name -->
+  <title>קייטרינג הבית – קייטרינג לאירועים פרטיים ועסקיים</title>
+  <meta name="description" content="קייטרינג הבית – אירועים פרטיים, משפחתיים ועסקיים עם תפריט טרי, שירות אישי והגשה שמכבדת את הרגע." />
+
+  <!-- Fonts: Frank Ruhl Libre (classical Israeli serif) + Assistant (clean Hebrew sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       DESIGN TOKENS
+    ============================================================ */
+    :root {
+      --white:       #ffffff;
+      --off-white:   #f9f7f4;
+      --linen:       #f2ede5;
+      --stone:       #c8b89a;
+      --stone-light: #e0d8cc;
+      --putty:       #b5a48a;
+      --sage:        #8a9070;
+      --ink:         #1a1a18;
+      --ink-mid:     #3d3d3a;
+      --ink-light:   #6b6b66;
+      --ink-faint:   #9a9a95;
+      --rule:        #e8e3db;
+
+      --font-serif:  'Frank Ruhl Libre', serif;
+      --font-sans:   'Assistant', sans-serif;
+
+      --max-w:       1200px;
+      --gutter:      clamp(20px, 5vw, 60px);
+      --section-gap: clamp(80px, 12vw, 140px);
+
+      --ease:        cubic-bezier(0.4, 0, 0.2, 1);
+      --ease-out:    cubic-bezier(0, 0, 0.2, 1);
+    }
+
+    /* ============================================================
+       RESET
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--ink);
+      background: var(--white);
+      direction: rtl;
+      text-align: right;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    ul, ol { list-style: none; }
+
+    /* ============================================================
+       LAYOUT UTILITIES
+    ============================================================ */
+    .wrap {
+      width: 100%;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+    .section { padding: var(--section-gap) 0; }
+    .section--linen { background: var(--linen); }
+    .section--off-white { background: var(--off-white); }
+
+    /* Section label — small uppercase text above headings */
+    .label {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--putty);
+      margin-bottom: 18px;
+    }
+
+    /* Display headings */
+    .h-display {
+      font-family: var(--font-serif);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+    .h-display--xl  { font-size: clamp(2.8rem, 6vw, 5rem); }
+    .h-display--lg  { font-size: clamp(2.2rem, 4.5vw, 3.8rem); }
+    .h-display--md  { font-size: clamp(1.7rem, 3vw, 2.6rem); }
+    .h-display--sm  { font-size: clamp(1.3rem, 2.5vw, 1.9rem); }
+
+    .body-lg { font-size: clamp(1rem, 1.5vw, 1.15rem); color: var(--ink-mid); line-height: 1.8; }
+    .body-md { font-size: 0.95rem; color: var(--ink-mid); line-height: 1.75; }
+    .body-sm { font-size: 0.85rem; color: var(--ink-light); line-height: 1.7; }
+
+    /* Horizontal rule */
+    .hr {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 0;
+    }
+
+    /* ============================================================
+       BUTTONS
+    ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 30px;
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.25s var(--ease);
+      white-space: nowrap;
+      border: none;
+      text-decoration: none;
+    }
+    .btn--dark {
+      background: var(--ink);
+      color: var(--white);
+    }
+    .btn--dark:hover {
+      background: var(--ink-mid);
+    }
+    .btn--outline {
+      background: transparent;
+      color: var(--ink);
+      border: 1.5px solid var(--ink);
+    }
+    .btn--outline:hover {
+      background: var(--ink);
+      color: var(--white);
+    }
+    .btn--outline-stone {
+      background: transparent;
+      color: var(--ink);
+      border: 1.5px solid var(--stone);
+    }
+    .btn--outline-stone:hover {
+      background: var(--stone);
+      color: var(--ink);
+    }
+    .btn--whatsapp {
+      background: #1a1a18;
+      color: #fff;
+      font-size: 0.85rem;
+    }
+    .btn--whatsapp:hover { background: #333330; }
+
+    /* ============================================================
+       PHOTO PLACEHOLDER
+       Replace with <img src="..." alt="..."> when you have photos
+    ============================================================ */
+    .photo {
+      width: 100%;
+      height: 100%;
+      background: var(--linen);
+      position: relative;
+      overflow: hidden;
+    }
+    /* Subtle warm texture to make placeholders feel intentional */
+    .photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg,
+          rgba(200,184,154,0.18) 0%,
+          rgba(200,184,154,0.04) 40%,
+          rgba(138,144,112,0.08) 100%);
+    }
+    /* Label inside placeholder — remove when you add real photos */
+    .photo__label {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--putty);
+      z-index: 1;
+      /* CHANGE: Remove this label when adding a real photo */
+    }
+
+    /* ============================================================
+       SCROLL REVEAL
+    ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s var(--ease-out), transform 0.75s var(--ease-out);
+    }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ============================================================
+       HEADER / NAV
+    ============================================================ */
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 900;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s var(--ease);
+    }
+    .header.scrolled {
+      border-bottom-color: var(--rule);
+    }
+    .header__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    /* Logo placeholder */
+    .logo-placeholder {
+      /* CHANGE: Replace this entire element with your <img> logo */
+      height: 36px;
+      width: 140px;
+      background: var(--linen);
+      border: 1.5px dashed var(--stone-light);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .logo-placeholder span {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--putty);
+      text-transform: uppercase;
+    }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .nav__links a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--ink-mid);
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+    .nav__links a:hover { color: var(--ink); }
+
+    .header__actions { display: flex; align-items: center; gap: 10px; }
+    .header__actions .btn { padding: 10px 20px; }
+
+    /* Mobile nav */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      height: 1.5px;
+      background: var(--ink);
+      border-radius: 2px;
+      transition: transform 0.3s var(--ease), opacity 0.2s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .mobile-drawer {
+      display: none;
+      position: fixed;
+      inset: 0;
+      top: 70px;
+      background: var(--white);
+      z-index: 800;
+      flex-direction: column;
+      padding: 48px var(--gutter);
+      border-top: 1px solid var(--rule);
+      gap: 0;
+    }
+    .mobile-drawer.open { display: flex; }
+    .mobile-drawer a {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: var(--ink);
+      padding: 18px 0;
+      border-bottom: 1px solid var(--rule);
+      transition: color 0.2s;
+    }
+    .mobile-drawer a:hover { color: var(--putty); }
+    .mobile-drawer__ctas {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 40px;
+    }
+    .mobile-drawer__ctas .btn { justify-content: center; }
+
+    @media (max-width: 900px) {
+      .nav__links { display: none; }
+      .header__actions .btn--outline { display: none; }
+      .hamburger { display: flex; }
+    }
+    @media (max-width: 540px) {
+      .header__actions .btn--whatsapp span { display: none; }
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .hero {
+      padding-top: 70px; /* header height */
+      min-height: 100svh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    .hero__text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(48px, 8vw, 100px) var(--gutter);
+      padding-left: clamp(24px, 4vw, 60px);
+    }
+    .hero__text .label { margin-bottom: 24px; }
+    .hero__headline {
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: clamp(2.4rem, 4.5vw, 4.2rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 28px;
+    }
+    .hero__sub {
+      font-size: clamp(1rem, 1.4vw, 1.1rem);
+      color: var(--ink-mid);
+      line-height: 1.85;
+      max-width: 440px;
+      margin-bottom: 44px;
+      font-weight: 400;
+    }
+    .hero__actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .hero__meta {
+      margin-top: 64px;
+      padding-top: 32px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      gap: 40px;
+    }
+    .hero__meta-item strong {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1;
+    }
+    .hero__meta-item span {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--ink-light);
+      margin-top: 4px;
+      letter-spacing: 0.05em;
+    }
+
+    /* Hero photo — full column */
+    .hero__photo {
+      position: relative;
+      min-height: 540px;
+    }
+    .hero__photo .photo { position: absolute; inset: 0; }
+    /* Gradient overlay on photo for text readability if needed */
+    .hero__photo-caption {
+      position: absolute;
+      bottom: 32px;
+      right: 32px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      z-index: 2;
+    }
+
+    @media (max-width: 860px) {
+      .hero {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 52vw;
+        min-height: auto;
+      }
+      .hero__text {
+        padding: 52px var(--gutter) 40px;
+      }
+      .hero__photo { min-height: 0; }
+      .hero__meta { gap: 24px; }
+    }
+    @media (max-width: 480px) {
+      .hero__meta { flex-wrap: wrap; gap: 20px; }
+    }
+
+    /* ============================================================
+       ABOUT
+    ============================================================ */
+    .about__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 8vw, 120px);
+      align-items: start;
+    }
+    .about__photo-col {
+      position: relative;
+    }
+    .about__photo-main {
+      aspect-ratio: 3/4;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .about__photo-accent {
+      position: absolute;
+      bottom: -32px;
+      left: -32px;
+      width: 55%;
+      aspect-ratio: 1;
+      border-radius: 2px;
+      overflow: hidden;
+      border: 6px solid var(--white);
+    }
+    .about__text-col {
+      padding-top: clamp(0px, 6vw, 80px);
+    }
+    .about__pull-quote {
+      font-family: var(--font-serif);
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.4;
+      margin: 36px 0;
+      padding-right: 28px;
+      border-right: 3px solid var(--stone);
+    }
+    .about__body { margin-bottom: 40px; }
+    .about__body p + p { margin-top: 18px; }
+
+    @media (max-width: 800px) {
+      .about__grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+      .about__photo-accent { left: -16px; bottom: -16px; border-width: 4px; }
+      .about__photo-col { margin-bottom: 32px; }
+    }
+
+    /* ============================================================
+       SERVICES
+    ============================================================ */
+    .services__header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: end;
+      margin-bottom: 56px;
+    }
+    .services__header-text { /* right col */ }
+    .services__header-sub {
+      font-size: 1rem;
+      color: var(--ink-mid);
+      line-height: 1.8;
+    }
+
+    /* 3-col asymmetric photo grid */
+    .services__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    /* Large card spans 2 rows */
+    .services__grid .service-card--tall { grid-row: span 2; }
+
+    .service-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 2px;
+      cursor: default;
+    }
+    .service-card__photo {
+      width: 100%;
+      height: 100%;
+      min-height: 220px;
+    }
+    /* Dark overlay on hover */
+    .service-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26,26,24,0.72) 0%, rgba(26,26,24,0.1) 60%);
+      transition: opacity 0.4s var(--ease);
+    }
+    .service-card:hover::after {
+      background: linear-gradient(to top, rgba(26,26,24,0.82) 0%, rgba(26,26,24,0.25) 60%);
+    }
+    .service-card__content {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      padding: 24px 22px;
+      z-index: 2;
+      transform: translateY(4px);
+      transition: transform 0.35s var(--ease);
+    }
+    .service-card:hover .service-card__content { transform: none; }
+    .service-card__name {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+    .service-card__desc {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.6;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s var(--ease);
+    }
+    .service-card:hover .service-card__desc { max-height: 80px; }
+
+    @media (max-width: 800px) {
+      .services__header { grid-template-columns: 1fr; gap: 18px; }
+      .services__grid { grid-template-columns: 1fr 1fr; }
+      .services__grid .service-card--tall { grid-row: span 1; }
+      .service-card__desc { max-height: none !important; }
+      .service-card__photo { min-height: 180px; }
+    }
+    @media (max-width: 480px) {
+      .services__grid { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
+       MENU
+    ============================================================ */
+    .menu__header { text-align: center; max-width: 600px; margin: 0 auto 64px; }
+
+    .menu__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px; /* Tight grid like a magazine spread */
+    }
+
+    .menu-card {
+      background: var(--white);
+      overflow: hidden;
+      position: relative;
+      cursor: default;
+      transition: background 0.3s var(--ease);
+    }
+    .menu-card:hover { background: var(--off-white); }
+
+    .menu-card__photo {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      position: relative;
+    }
+    .menu-card__photo .photo {
+      transition: transform 0.7s var(--ease);
+    }
+    .menu-card:hover .menu-card__photo .photo {
+      transform: scale(1.04);
+    }
+
+    .menu-card__body { padding: 24px 22px 28px; }
+    .menu-card__category {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--putty);
+      margin-bottom: 10px;
+    }
+    .menu-card__name {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 10px;
+      line-height: 1.25;
+    }
+    .menu-card__desc {
+      font-size: 0.85rem;
+      color: var(--ink-light);
+      line-height: 1.7;
+    }
+
+    .menu__cta { text-align: center; margin-top: 52px; }
+
+    @media (max-width: 800px) {
+      .menu__grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .menu__grid { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
+       GALLERY
+    ============================================================ */
+    .gallery__header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    /* Masonry-style grid using CSS grid */
+    .gallery__grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: repeat(3, 240px);
+      gap: 10px;
+    }
+    .gallery__item { overflow: hidden; border-radius: 2px; cursor: default; }
+    .gallery__item .photo { height: 100%; transition: transform 0.6s var(--ease); }
+    .gallery__item:hover .photo { transform: scale(1.04); }
+
+    /* Precise placement for editorial feel */
+    .gallery__item:nth-child(1) { grid-column: 1 / 6;  grid-row: 1 / 3; }
+    .gallery__item:nth-child(2) { grid-column: 6 / 9;  grid-row: 1 / 2; }
+    .gallery__item:nth-child(3) { grid-column: 9 / 13; grid-row: 1 / 2; }
+    .gallery__item:nth-child(4) { grid-column: 6 / 10; grid-row: 2 / 3; }
+    .gallery__item:nth-child(5) { grid-column: 10/ 13; grid-row: 2 / 3; }
+    .gallery__item:nth-child(6) { grid-column: 1 / 5;  grid-row: 3 / 4; }
+    .gallery__item:nth-child(7) { grid-column: 5 / 9;  grid-row: 3 / 4; }
+    .gallery__item:nth-child(8) { grid-column: 9 / 13; grid-row: 3 / 4; }
+
+    @media (max-width: 860px) {
+      .gallery__grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+      }
+      .gallery__item { grid-column: auto !important; grid-row: auto !important; }
+      .gallery__item .photo { height: 220px; }
+    }
+    @media (max-width: 480px) {
+      .gallery__grid { grid-template-columns: 1fr; }
+      .gallery__item .photo { height: 240px; }
+    }
+
+    /* ============================================================
+       HOW IT WORKS
+    ============================================================ */
+    .process__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .process-step {
+      padding: 40px 36px 40px 24px;
+      border-right: 1px solid var(--rule);
+      position: relative;
+    }
+    .process-step:last-child { border-right: none; }
+
+    .process-step__num {
+      font-family: var(--font-serif);
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: var(--stone-light);
+      line-height: 1;
+      margin-bottom: 24px;
+      display: block;
+    }
+    .process-step__title {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+    .process-step__desc {
+      font-size: 0.87rem;
+      color: var(--ink-light);
+      line-height: 1.75;
+    }
+
+    @media (max-width: 800px) {
+      .process__grid { grid-template-columns: 1fr 1fr; }
+      .process-step {
+        border-right: 1px solid var(--rule);
+        border-bottom: 1px solid var(--rule);
+        padding: 32px 24px;
+      }
+      .process-step:nth-child(even) { border-right: none; }
+      .process-step:nth-child(3),
+      .process-step:nth-child(4) { border-bottom: none; }
+    }
+    @media (max-width: 480px) {
+      .process__grid { grid-template-columns: 1fr; }
+      .process-step { border-right: none !important; border-bottom: 1px solid var(--rule) !important; }
+      .process-step:last-child { border-bottom: none !important; }
+    }
+
+    /* ============================================================
+       TESTIMONIALS
+    ============================================================ */
+    .testimonials__header { margin-bottom: 56px; }
+
+    .testimonials__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .testi-card {
+      padding: 36px 32px;
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      display: flex;
+      flex-direction: column;
+    }
+    .testi-card__stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 22px;
+    }
+    .testi-card__star {
+      width: 12px;
+      height: 12px;
+      background: var(--stone);
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    }
+    .testi-card__text {
+      font-size: 0.95rem;
+      color: var(--ink-mid);
+      line-height: 1.8;
+      flex: 1;
+      margin-bottom: 28px;
+      font-style: italic;
+    }
+    .testi-card__author {
+      border-top: 1px solid var(--rule);
+      padding-top: 20px;
+    }
+    .testi-card__name {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .testi-card__meta {
+      font-size: 0.78rem;
+      color: var(--ink-faint);
+      margin-top: 2px;
+    }
+    .testi-card__event {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 3px 10px;
+      background: var(--linen);
+      border-radius: 2px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--putty);
+    }
+
+    @media (max-width: 860px) {
+      .testimonials__grid { grid-template-columns: 1fr; gap: 16px; }
+    }
+
+    /* ============================================================
+       FINAL CTA
+    ============================================================ */
+    .final-cta {
+      background: var(--linen);
+      padding: var(--section-gap) 0;
+    }
+    .final-cta__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 8vw, 100px);
+      align-items: center;
+    }
+    .final-cta__photo {
+      aspect-ratio: 4/3;
+      border-radius: 2px;
+      overflow: hidden;
+      order: 2;
+    }
+    .final-cta__text { order: 1; }
+    .final-cta__headline {
+      font-family: var(--font-serif);
+      font-size: clamp(1.9rem, 3.5vw, 3rem);
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.15;
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+    .final-cta__sub {
+      font-size: 1rem;
+      color: var(--ink-mid);
+      line-height: 1.8;
+      margin-bottom: 40px;
+    }
+    .final-cta__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+    .final-cta__note {
+      font-size: 0.8rem;
+      color: var(--ink-faint);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 800px) {
+      .final-cta__inner { grid-template-columns: 1fr; }
+      .final-cta__photo { order: -1; }
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .footer {
+      background: var(--ink);
+      color: var(--white);
+      padding: 72px 0 32px;
+    }
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: clamp(30px, 5vw, 80px);
+      margin-bottom: 56px;
+    }
+
+    /* Logo placeholder in footer */
+    .footer__logo-placeholder {
+      /* CHANGE: Replace with <img src="logo-white.png" alt="קייטרינג הבית"> */
+      height: 32px;
+      width: 130px;
+      background: rgba(255,255,255,0.08);
+      border: 1.5px dashed rgba(255,255,255,0.2);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .footer__logo-placeholder span {
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .footer__tagline {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.8;
+      margin-bottom: 32px;
+      max-width: 280px;
+    }
+    .footer__contacts a {
+      display: block;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 6px;
+      transition: color 0.2s;
+    }
+    .footer__contacts a:hover { color: var(--stone); }
+
+    .footer__col-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 20px;
+    }
+    .footer__col ul { display: flex; flex-direction: column; gap: 10px; }
+    .footer__col ul a {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.55);
+      transition: color 0.2s;
+    }
+    .footer__col ul a:hover { color: var(--stone); }
+
+    .footer__bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer__copy {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    @media (max-width: 720px) {
+      .footer__grid { grid-template-columns: 1fr 1fr; }
+      .footer__col:first-child { grid-column: 1 / -1; }
+    }
+    @media (max-width: 480px) {
+      .footer__grid { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
+       FLOATING WHATSAPP
+    ============================================================ */
+    .fab {
+      position: fixed;
+      bottom: 28px;
+      left: 28px; /* RTL: left side of screen */
+      z-index: 700;
+      width: 54px;
+      height: 54px;
+      background: var(--ink);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+      transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+      text-decoration: none;
+    }
+    .fab:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.3);
+    }
+    /* WhatsApp SVG embedded */
+    .fab svg { width: 24px; height: 24px; fill: white; }
+
+    /* ============================================================
+       DIVIDER UTILITY
+    ============================================================ */
+    .section-divider {
+      width: 48px;
+      height: 2px;
+      background: var(--stone);
+      margin-bottom: 36px;
+    }
+    .section-divider--center { margin: 0 auto 36px; }
+
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       HEADER
+  ============================================================ -->
+  <header class="header" id="header">
+    <div class="header__inner">
+
+      <!-- CHANGE: Replace .logo-placeholder with your logo image -->
+      <!-- Example: <img src="logo.svg" alt="קייטרינג הבית" height="36"> -->
+      <div class="logo-placeholder" aria-label="לוגו קייטרינג הבית">
+        <span>לוגו כאן</span>
+      </div>
+
+      <nav aria-label="ניווט ראשי">
+        <ul class="nav__links">
+          <li><a href="#about">אודות</a></li>
+          <li><a href="#services">שירותים</a></li>
+          <li><a href="#menu">תפריט</a></li>
+          <li><a href="#gallery">גלריה</a></li>
+          <li><a href="#contact">יצירת קשר</a></li>
+        </ul>
+      </nav>
+
+      <div class="header__actions">
+        <!-- CHANGE: Phone number -->
+        <a href="tel:0500000000" class="btn btn--outline" aria-label="התקשרו אלינו">050-000-0000</a>
+        <!-- CHANGE: WhatsApp link -->
+        <a href="https://wa.me/972500000000" class="btn btn--whatsapp" target="_blank" rel="noopener" aria-label="שלחו הודעת וואטסאפ">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <span>וואטסאפ</span>
+        </a>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="פתח תפריט ניווט" aria-expanded="false" aria-controls="mobile-drawer">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile drawer -->
+  <div class="mobile-drawer" id="mobile-drawer" role="dialog" aria-modal="true" aria-label="תפריט ניווט">
+    <a href="#about"    onclick="closeDrawer()">אודות</a>
+    <a href="#services" onclick="closeDrawer()">שירותים</a>
+    <a href="#menu"     onclick="closeDrawer()">תפריט</a>
+    <a href="#gallery"  onclick="closeDrawer()">גלריה</a>
+    <a href="#contact"  onclick="closeDrawer()">יצירת קשר</a>
+    <div class="mobile-drawer__ctas">
+      <!-- CHANGE: WhatsApp link and phone -->
+      <a href="https://wa.me/972500000000" class="btn btn--dark" target="_blank" rel="noopener" onclick="closeDrawer()">שלחו הודעה בוואטסאפ</a>
+      <a href="tel:0500000000" class="btn btn--outline" onclick="closeDrawer()">050-000-0000</a>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- ============================================================
+         HERO
+    ============================================================ -->
+    <section class="hero" id="hero" aria-labelledby="hero-headline">
+      <div class="hero__text reveal">
+        <span class="label">קייטרינג לאירועים</span>
+        <h1 class="hero__headline" id="hero-headline">
+          קייטרינג לאירועים<br>עם אוכל שמרגישים
+        </h1>
+        <p class="hero__sub">
+          אירועים פרטיים, משפחתיים ועסקיים עם תפריט טרי,
+          שירות אישי והגשה שמכבדת את הרגע.
+        </p>
+        <div class="hero__actions">
+          <!-- CHANGE: WhatsApp link -->
+          <a href="https://wa.me/972500000000" class="btn btn--dark" target="_blank" rel="noopener">הזמנת אירוע</a>
+          <a href="#menu" class="btn btn--outline">צפייה בתפריטים</a>
+        </div>
+        <div class="hero__meta">
+          <div class="hero__meta-item">
+            <strong>200+</strong>
+            <span>אירועים מוצלחים</span>
+          </div>
+          <div class="hero__meta-item">
+            <strong>100%</strong>
+            <span>חומרי גלם טריים</span>
+          </div>
+          <div class="hero__meta-item">
+            <strong>אישי</strong>
+            <span>שירות מהשיחה הראשונה</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__photo" aria-hidden="true">
+        <!--
+          CHANGE: Replace .photo div below with:
+          <img src="hero-food.jpg" alt="מנות קייטרינג של קייטרינג הבית" style="width:100%;height:100%;object-fit:cover">
+        -->
+        <div class="photo">
+          <span class="photo__label">הוסיפו תמונת אוכל כאן</span>
+        </div>
+        <!-- CHANGE: Remove this caption or update text when adding real photo -->
+        <p class="hero__photo-caption">קייטרינג הבית — טרי מהיום</p>
+      </div>
+    </section>
+
+    <hr class="hr" />
+
+    <!-- ============================================================
+         ABOUT
+    ============================================================ -->
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="wrap">
+        <div class="about__grid">
+
+          <div class="about__photo-col reveal">
+            <!--
+              CHANGE: Replace .photo divs below with real images.
+              Main: <img src="about-main.jpg" alt="הכנת מנות בקייטרינג הבית" style="width:100%;height:100%;object-fit:cover">
+              Accent: <img src="about-accent.jpg" alt="מרכיבים טריים" style="width:100%;height:100%;object-fit:cover">
+            -->
+            <div class="about__photo-main">
+              <div class="photo" style="min-height:480px;">
+                <span class="photo__label">תמונת אודות ראשית</span>
+              </div>
+            </div>
+            <div class="about__photo-accent">
+              <div class="photo" style="min-height:180px;">
+                <span class="photo__label">תמונה משנית</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="about__text-col reveal reveal-delay-2">
+            <span class="label">אודות</span>
+            <h2 class="h-display h-display--lg" id="about-title">אוכל שמכבד<br>את האירוע</h2>
+
+            <blockquote class="about__pull-quote">
+              "כל אירוע מקבל תפריט שנבנה בשבילו בלבד —<br>לא פחות מזה."
+            </blockquote>
+
+            <div class="about__body body-md">
+              <p>
+                ב<strong>קייטרינג הבית</strong> אנחנו מאמינים שהאוכל הוא חלק בלתי נפרד מהאירוע —
+                לא רק דלק לאורחים, אלא חוויה שמשלימה את הרגע.
+                כל תפריט נבנה יחד עם הלקוח, בהתאמה לאופי האירוע, לכמות המוזמנים ולטעם האישי.
+              </p>
+              <p>
+                אנחנו עובדים עם חומרי גלם טריים, רוכשים ביום האירוע, ומכינים הכל בעצמנו.
+                אין אצלנו מנות "מהמקפיא" — רק בישול אמיתי, טעם אמיתי, ושירות שמלווה אתכם
+                מהשיחה הראשונה ועד שהאורח האחרון יוצא שבע.
+              </p>
+              <p>
+                אנחנו גאים בכך שרוב הלקוחות שלנו חוזרים. לא בגלל פרסומות —
+                אלא כי האוכל מדבר בעד עצמו.
+              </p>
+            </div>
+
+            <!-- CHANGE: WhatsApp link -->
+            <a href="https://wa.me/972500000000" class="btn btn--dark" target="_blank" rel="noopener">צרו קשר לשיחת היכרות</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <hr class="hr" />
+
+    <!-- ============================================================
+         SERVICES
+    ============================================================ -->
+    <section class="section section--off-white" id="services" aria-labelledby="services-title">
+      <div class="wrap">
+        <div class="services__header reveal">
+          <div class="services__header-text">
+            <span class="label">שירותים</span>
+            <h2 class="h-display h-display--lg" id="services-title">לכל אירוע<br>הפתרון הנכון</h2>
+          </div>
+          <p class="services__header-sub body-lg">
+            מאירועים אינטימיים ועד אירועים עסקיים גדולים —
+            כל קייטרינג מותאם בדיוק לצרכים שלכם.
+          </p>
+        </div>
+
+        <!--
+          CHANGE: Replace .photo divs with real food/event photos.
+          Each service card needs its own photo relevant to the service type.
+          Example: <img src="services/private-event.jpg" alt="אירועים פרטיים" style="width:100%;height:100%;object-fit:cover">
+        -->
+        <div class="services__grid">
+
+          <!-- Tall card — most important service -->
+          <article class="service-card service-card--tall reveal">
+            <div class="service-card__photo photo" style="min-height:480px">
+              <span class="photo__label">תמונת אירועים פרטיים</span>
+            </div>
+            <div class="service-card__content">
+              <h3 class="service-card__name">אירועים פרטיים</h3>
+              <p class="service-card__desc">ערבים מיוחדים, מסיבות ואירועים אינטימיים עם תפריט שמרגיש ביתי ומושקע.</p>
+            </div>
+          </article>
+
+          <article class="service-card reveal reveal-delay-1">
+            <div class="service-card__photo photo" style="min-height:220px">
+              <span class="photo__label">אירועי חברה</span>
+            </div>
+            <div class="service-card__content">
+              <h3 class="service-card__name">אירועי חברה</h3>
+              <p class="service-card__desc">השקות, כנסים וימי גיבוש עם הגשה מקצועית ותפריט שמתאים לקהל.</p>
+            </div>
+          </article>
+
+          <article class="service-card reveal reveal-delay-2">
+            <div class="service-card__photo photo" style="min-height:220px">
+              <span class="photo__label">שבתות חתן ומשפחה</span>
+            </div>
+            <div class="service-card__content">
+              <h3 class="service-card__name">שבתות חתן ומשפחה</h3>
+              <p class="service-card__desc">קידושים, בנות שבת וארוחות משפחתיות עם חמימות ביתית ואוכל שמרגש.</p>
+            </div>
+          </article>
+
+          <article class="service-card reveal reveal-delay-1">
+            <div class="service-card__photo photo" style="min-height:220px">
+              <span class="photo__label">ימי הולדת</span>
+            </div>
+            <div class="service-card__content">
+              <h3 class="service-card__name">ימי הולדת</h3>
+              <p class="service-card__desc">תפריטים חגיגיים שמתאימים לכל גיל ולכל אווירה — פשוטה או מפוארת.</p>
+            </div>
+          </article>
+
+          <article class="service-card reveal reveal-delay-2">
+            <div class="service-card__photo photo" style="min-height:220px">
+              <span class="photo__label">מגשי אירוח</span>
+            </div>
+            <div class="service-card__content">
+              <h3 class="service-card__name">מגשי אירוח</h3>
+              <p class="service-card__desc">מגשי גבינות, ים-תיכוני ומיני-מנות שנראים מרהיב ומרגישים אפילו יותר טוב.</p>
+            </div>
+          </article>
+
+          <article class="service-card reveal reveal-delay-3">
+            <div class="service-card__photo photo" style="min-height:220px">
+              <span class="photo__label">תפריטים בהתאמה אישית</span>
+            </div>
+            <div class="service-card__content">
+              <h3 class="service-card__name">תפריטים בהתאמה אישית</h3>
+              <p class="service-card__desc">יש לכם רעיון מיוחד? בואו נבנה ביחד תפריט שלא ראיתם כמוהו.</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         MENU
+    ============================================================ -->
+    <section class="section" id="menu" aria-labelledby="menu-title">
+      <div class="wrap">
+        <header class="menu__header reveal">
+          <span class="label">מה תמצאו בתפריט</span>
+          <div class="section-divider section-divider--center"></div>
+          <h2 class="h-display h-display--lg" id="menu-title">תפריט שנבנה<br>מחדש לכל אירוע</h2>
+          <p class="body-lg" style="margin-top:18px;color:var(--ink-light)">
+            הקטגוריות הבאות הן בסיס — המנות הספציפיות נקבעות יחד אתכם.
+          </p>
+        </header>
+
+        <!--
+          CHANGE: Replace each .photo div with a real food image.
+          Example: <img src="menu/mains.jpg" alt="מנות עיקריות" style="width:100%;height:100%;object-fit:cover">
+        -->
+        <div class="menu__grid">
+
+          <article class="menu-card reveal">
+            <div class="menu-card__photo">
+              <div class="photo">
+                <span class="photo__label">תמונת עיקריות</span>
+              </div>
+            </div>
+            <div class="menu-card__body">
+              <p class="menu-card__category">מנה ראשונה לאחרונה</p>
+              <h3 class="menu-card__name">עיקריות</h3>
+              <p class="menu-card__desc">בשרים, עוף ודגים שמוכנים טרי ביום האירוע. המנות מותאמות לכמות ולאוכלוסייה.</p>
+            </div>
+          </article>
+
+          <article class="menu-card reveal reveal-delay-1">
+            <div class="menu-card__photo">
+              <div class="photo">
+                <span class="photo__label">תמונת תוספות חמות</span>
+              </div>
+            </div>
+            <div class="menu-card__body">
+              <p class="menu-card__category">מגוון עשיר</p>
+              <h3 class="menu-card__name">תוספות חמות</h3>
+              <p class="menu-card__desc">אורז, ירקות קלויים, תפוחי אדמה ותוספות עונתיות שמשלימות כל שולחן.</p>
+            </div>
+          </article>
+
+          <article class="menu-card reveal reveal-delay-2">
+            <div class="menu-card__photo">
+              <div class="photo">
+                <span class="photo__label">תמונת סלטים</span>
+              </div>
+            </div>
+            <div class="menu-card__body">
+              <p class="menu-card__category">טריים מהיום</p>
+              <h3 class="menu-card__name">סלטים</h3>
+              <p class="menu-card__desc">סלטים ים-תיכוניים, ירוקים ומיוחדים שנקטפים ביום האירוע ולא כמה ימים לפניו.</p>
+            </div>
+          </article>
+
+          <article class="menu-card reveal">
+            <div class="menu-card__photo">
+              <div class="photo">
+                <span class="photo__label">תמונת מגשי אירוח</span>
+              </div>
+            </div>
+            <div class="menu-card__body">
+              <p class="menu-card__category">ויזואלי ומרשים</p>
+              <h3 class="menu-card__name">מגשי אירוח</h3>
+              <p class="menu-card__desc">מגשים שנראים מהממים ומרגישים אפילו יותר טוב — גבינות, בשרים, ים-תיכוני ועוד.</p>
+            </div>
+          </article>
+
+          <article class="menu-card reveal reveal-delay-1">
+            <div class="menu-card__photo">
+              <div class="photo">
+                <span class="photo__label">תמונת קינוחים</span>
+              </div>
+            </div>
+            <div class="menu-card__body">
+              <p class="menu-card__category">מסיימים בגדול</p>
+              <h3 class="menu-card__name">קינוחים</h3>
+              <p class="menu-card__desc">קינוחים ביתיים שנאפים בעצמנו — בראוניז, טארטים, פנה קוטה ועוד לפי הזמנה.</p>
+            </div>
+          </article>
+
+          <!-- Empty card with CTA to fill the grid -->
+          <div class="menu-card reveal reveal-delay-2" style="background:var(--linen);display:flex;align-items:center;justify-content:center;text-align:center;padding:40px 32px;flex-direction:column;gap:20px">
+            <p class="h-display h-display--sm" style="color:var(--ink)">
+              רוצים לדעת מה עוד אפשרי?
+            </p>
+            <p class="body-sm">כל תפריט נבנה מחדש — דברו איתנו.</p>
+            <!-- CHANGE: WhatsApp link -->
+            <a href="https://wa.me/972500000000" class="btn btn--dark" target="_blank" rel="noopener">לשיחה בוואטסאפ</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <hr class="hr" />
+
+    <!-- ============================================================
+         GALLERY
+    ============================================================ -->
+    <section class="section section--off-white" id="gallery" aria-labelledby="gallery-title">
+      <div class="wrap">
+        <div class="gallery__header reveal">
+          <div>
+            <span class="label">גלריית אירועים</span>
+            <h2 class="h-display h-display--md" id="gallery-title">מה שיצרנו</h2>
+          </div>
+          <!-- CHANGE: WhatsApp link -->
+          <a href="https://wa.me/972500000000" class="btn btn--outline" target="_blank" rel="noopener">רוצים משהו דומה? דברו איתנו</a>
+        </div>
+
+        <!--
+          CHANGE: Replace each gallery-item's .photo div with a real event/food photo.
+          Structure:
+          <img src="gallery/event1.jpg" alt="תיאור האירוע" style="width:100%;height:100%;object-fit:cover">
+        -->
+        <div class="gallery__grid">
+          <div class="gallery__item reveal"><div class="photo"><span class="photo__label">תמונה 1 — גדולה</span></div></div>
+          <div class="gallery__item reveal reveal-delay-1"><div class="photo"><span class="photo__label">תמונה 2</span></div></div>
+          <div class="gallery__item reveal reveal-delay-2"><div class="photo"><span class="photo__label">תמונה 3</span></div></div>
+          <div class="gallery__item reveal reveal-delay-1"><div class="photo"><span class="photo__label">תמונה 4</span></div></div>
+          <div class="gallery__item reveal reveal-delay-2"><div class="photo"><span class="photo__label">תמונה 5</span></div></div>
+          <div class="gallery__item reveal"><div class="photo"><span class="photo__label">תמונה 6</span></div></div>
+          <div class="gallery__item reveal reveal-delay-1"><div class="photo"><span class="photo__label">תמונה 7</span></div></div>
+          <div class="gallery__item reveal reveal-delay-2"><div class="photo"><span class="photo__label">תמונה 8</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         HOW IT WORKS
+    ============================================================ -->
+    <section class="section" id="process" aria-labelledby="process-title">
+      <div class="wrap">
+        <div class="reveal" style="margin-bottom:56px">
+          <span class="label">התהליך</span>
+          <div class="section-divider"></div>
+          <h2 class="h-display h-display--lg" id="process-title">איך זה עובד</h2>
+        </div>
+
+        <div class="process__grid">
+
+          <div class="process-step reveal">
+            <span class="process-step__num" aria-hidden="true">01</span>
+            <h3 class="process-step__title">שיחת היכרות</h3>
+            <p class="process-step__desc">
+              מתקשרים, מדברים, ומבינים מה אתם צריכים.
+              שיחה ראשונה ללא עלות וללא התחייבות —
+              רק כדי לדעת שאנחנו הכתובת הנכונה.
+            </p>
+          </div>
+
+          <div class="process-step reveal reveal-delay-1">
+            <span class="process-step__num" aria-hidden="true">02</span>
+            <h3 class="process-step__title">בניית תפריט</h3>
+            <p class="process-step__desc">
+              בונים ביחד תפריט שמתאים לאירוע, לקהל ולתקציב.
+              כל תפריט הוא חדש — לא תבנית מוכנה.
+            </p>
+          </div>
+
+          <div class="process-step reveal reveal-delay-2">
+            <span class="process-step__num" aria-hidden="true">03</span>
+            <h3 class="process-step__title">הכנה טרייה</h3>
+            <p class="process-step__desc">
+              ביום האירוע מגיעים חומרי הגלם טריים
+              ומתחילה ההכנה. הכל נעשה בסמוך לאירוע
+              לטעם שלא ניתן לזייף.
+            </p>
+          </div>
+
+          <div class="process-step reveal reveal-delay-3">
+            <span class="process-step__num" aria-hidden="true">04</span>
+            <h3 class="process-step__title">הגעה וסידור באירוע</h3>
+            <p class="process-step__desc">
+              מגיעים בזמן, מסדרים את השולחן כמו שצריך,
+              ומגישים בצורה שמכבדת את הרגע.
+              אתם נהנים — אנחנו דואגים לכל השאר.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <hr class="hr" />
+
+    <!-- ============================================================
+         TESTIMONIALS
+    ============================================================ -->
+    <section class="section section--linen" id="testimonials" aria-labelledby="testimonials-title">
+      <div class="wrap">
+        <div class="testimonials__header reveal">
+          <span class="label">מה אומרים עלינו</span>
+          <h2 class="h-display h-display--lg" id="testimonials-title">לקוחות<br>שחזרו אלינו</h2>
+        </div>
+
+        <div class="testimonials__grid">
+
+          <article class="testi-card reveal">
+            <div class="testi-card__stars" aria-label="5 מתוך 5 כוכבים">
+              <div class="testi-card__star"></div>
+              <div class="testi-card__star"></div>
+              <div class="testi-card__star"></div>
+              <div class="testi-card__star"></div>
+              <div class="testi-card__star"></div>
+            </div>
+            <!-- CHANGE: Real testimonial text -->
+            <p class="testi-card__text">
+              "הזמנו לאירוע יום הולדת 50. האוכל הגיע חם, הסידור היה מרשים,
+              והאורחים שאלו אותנו כל הערב מי עשה את האוכל.
+              המלצה חמה לכל מי שרוצה שהאוכל יהיה חלק מהאירוע."
+            </p>
+            <div class="testi-card__author">
+              <!-- CHANGE: Real client name -->
+              <p class="testi-card__name">מיכל כ.</p>
+              <p class="testi-card__meta">רמת גן</p>
+              <span class="testi-card__event">יום הולדת</span>
+            </div>
+          </article>
+
+          <article class="testi-card reveal reveal-delay-1">
+            <div class="testi-card__stars" aria-label="5 מתוך 5 כוכבים">
+              <div class="testi-card__star"></div>
+              <div class="testi-card__star"></div>
+              <div class="testi-card__star"></div>
+              <div class="testi-card__star"></div>
+              <div class="testi-card__star"></div>
+            </div>
+            <p class="testi-card__text">
+              "הזמנו לאירוע חברה לכ-80 איש. הכל מדויק, מקצועי ובזמן.
+              הדבר שהכי הפתיע אותי — כמה שהייתה תקשורת טובה לאורך כל התהליך.
+              מהיכרות ועד ניקוי — הכל חלק."
+            </p>
+            <div class="testi-card__author">
+              <p class="testi-card__name">דוד ל.</p>
+              <p class="testi-card__meta">תל אביב</p>
+              <span class="testi-card__event">אירוע חברה</span>
+            </div>
+          </article>
+
+          <article class="testi-card reveal reveal-delay-2">
+            <div class="testi-card__stars" aria-label="5 מתוך 5 כוכבים">
+              <div class="testi-card__star"></div>
+              <div class="testi-card__star"></div>
+              <div class="testi-card__star"></div>
+              <div class="testi-card__star"></div>
+              <div class="testi-card__star"></div>
+            </div>
+            <p class="testi-card__text">
+              "חיפשנו קייטרינג לשבת חתן ורצינו משהו שירגיש ביתי ולא מאולתר.
+              קיבלנו בדיוק את זה. המשפחה עדיין מדברת על האוכל.
+              בפעם הבאה — רק אתם."
+            </p>
+            <div class="testi-card__author">
+              <p class="testi-card__name">שירה מ.</p>
+              <p class="testi-card__meta">ירושלים</p>
+              <span class="testi-card__event">שבת חתן</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         FINAL CTA
+    ============================================================ -->
+    <section class="final-cta" id="contact" aria-labelledby="cta-title">
+      <div class="wrap">
+        <div class="final-cta__inner">
+
+          <div class="final-cta__text reveal">
+            <span class="label">בואו נדבר</span>
+            <h2 class="final-cta__headline" id="cta-title">
+              מתכננים אירוע?<br>
+              בואו נבנה לכם<br>
+              תפריט שמתאים בדיוק.
+            </h2>
+            <p class="final-cta__sub">
+              שיחה ראשונה ללא עלות. אין התחייבויות.
+              רק שיחה כנה על מה שאתם צריכים.
+            </p>
+            <div class="final-cta__actions">
+              <!-- CHANGE: WhatsApp link -->
+              <a href="https://wa.me/972500000000" class="btn btn--dark" target="_blank" rel="noopener">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                שלחו הודעה בוואטסאפ
+              </a>
+              <!-- CHANGE: Phone number -->
+              <a href="tel:0500000000" class="btn btn--outline-stone">050-000-0000</a>
+            </div>
+            <p class="final-cta__note">
+              מגיבים בדרך כלל תוך שעה בשעות הפעילות.
+            </p>
+          </div>
+
+          <div class="final-cta__photo reveal reveal-delay-2">
+            <!--
+              CHANGE: Replace .photo div with a real image.
+              <img src="cta-food.jpg" alt="שולחן ערוך מקייטרינג הבית" style="width:100%;height:100%;object-fit:cover">
+            -->
+            <div class="photo" style="min-height:420px">
+              <span class="photo__label">תמונת CTA — שולחן ערוך</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer" role="contentinfo">
+    <div class="wrap">
+      <div class="footer__grid">
+
+        <div>
+          <!--
+            CHANGE: Replace .footer__logo-placeholder with your white version logo.
+            <img src="logo-white.svg" alt="קייטרינג הבית" height="32">
+          -->
+          <div class="footer__logo-placeholder" aria-label="לוגו קייטרינג הבית">
+            <span>לוגו כאן</span>
+          </div>
+          <!-- CHANGE: Business tagline -->
+          <p class="footer__tagline">
+            קייטרינג לאירועים עם אוכל שמרגישים.
+            מהמנה הראשונה ועד הקינוח האחרון.
+          </p>
+          <div class="footer__contacts">
+            <!-- CHANGE: Phone number -->
+            <a href="tel:0500000000">050-000-0000</a>
+            <!-- CHANGE: WhatsApp link -->
+            <a href="https://wa.me/972500000000" target="_blank" rel="noopener">שלחו הודעה בוואטסאפ</a>
+            <!-- CHANGE: Instagram link and handle -->
+            <a href="https://instagram.com/" target="_blank" rel="noopener">@cateringhabait_ig</a>
+          </div>
+        </div>
+
+        <div class="footer__col">
+          <p class="footer__col-label">ניווט</p>
+          <ul>
+            <li><a href="#about">אודות</a></li>
+            <li><a href="#services">שירותים</a></li>
+            <li><a href="#menu">תפריט</a></li>
+            <li><a href="#gallery">גלריה</a></li>
+            <li><a href="#contact">יצירת קשר</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <p class="footer__col-label">אזורי שירות</p>
+          <ul>
+            <!-- CHANGE: Your actual service areas -->
+            <li>תל אביב והמרכז</li>
+            <li>ירושלים</li>
+            <li>גוש דן</li>
+            <li>שפלה</li>
+            <li>ואזורים נוספים</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <!-- CHANGE: Year and business name -->
+        <p class="footer__copy">© 2025 קייטרינג הבית. כל הזכויות שמורות.</p>
+        <p class="footer__copy">עשוי עם תשומת לב לכל פרט</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       FLOATING WHATSAPP BUTTON
+  ============================================================ -->
+  <!-- CHANGE: WhatsApp link -->
+  <a
+    href="https://wa.me/972500000000"
+    class="fab"
+    target="_blank"
+    rel="noopener"
+    aria-label="שלחו הודעה בוואטסאפ"
+    title="שלחו הודעה בוואטסאפ"
+  >
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    // --- Sticky nav scroll state ---
+    const header = document.getElementById('header');
+    let lastY = 0;
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      header.classList.toggle('scrolled', y > 10);
+      lastY = y;
+    }, { passive: true });
+
+    // --- Hamburger / mobile drawer ---
+    const hamburger = document.getElementById('hamburger');
+    const drawer    = document.getElementById('mobile-drawer');
+
+    function openDrawer() {
+      drawer.classList.add('open');
+      hamburger.classList.add('open');
+      hamburger.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeDrawer() {
+      drawer.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+    hamburger.addEventListener('click', () => {
+      drawer.classList.contains('open') ? closeDrawer() : openDrawer();
+    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+
+    // --- Scroll reveal via IntersectionObserver ---
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+    revealEls.forEach(el => io.observe(el));
+
+    // --- Smooth anchor scroll ---
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href');
+        if (id === '#') return;
+        const target = document.querySelector(id);
+        if (target) {
+          e.preventDefault();
+          closeDrawer();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
